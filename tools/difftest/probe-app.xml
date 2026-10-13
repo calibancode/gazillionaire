@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application xmlns="http://ns.adobe.com/air/application/32.0">
+  <id>gazprobe</id>
+  <versionNumber>1.0</versionNumber>
+  <filename>gazprobe</filename>
+  <initialWindow>
+    <content>build/probe.swf</content>
+    <visible>false</visible>
+    <width>64</width>
+    <height>64</height>
+  </initialWindow>
+  <supportedProfiles>extendedDesktop</supportedProfiles>
+</application>

@@ -1,0 +1,86 @@
+==> disassembling original
+==> disassembling rebuilt
+
+================= per-method equivalence =================
+
+methods compared      : 4804
+  bytecode-identical  : 3134 (65.24%)
+  differing           : 1670
+
+classes with differing methods:
+  CustomComboBoxSkin.pcode                                   1/5 differ
+  Gazillionaire.pcode                                        1648/4268 differ
+  GradientBarSkin.pcode                                      1/9 differ
+  GradientTrackSkin.pcode                                    1/10 differ
+  _Gazillionaire_FlexInit.pcode                              1/4 differ
+  _Gazillionaire_Styles.pcode                                2/4 differ
+  _Gazillionaire_mx_managers_SystemManager.pcode             3/10 differ
+  _class_embed_css_f_fillblue_png__944102544_696470983.pcode 3/3 differ
+  _class_embed_css_f_fillred_png_97191697_987149254.pcode    3/3 differ
+  en_US$collections_properties.pcode                         1/4 differ
+  en_US$components_properties.pcode                          1/4 differ
+  en_US$containers_properties.pcode                          1/4 differ
+  en_US$controls_properties.pcode                            1/4 differ
+  en_US$core_properties.pcode                                1/4 differ
+  en_US$effects_properties.pcode                             1/4 differ
+  en_US$layout_properties.pcode                              1/4 differ
+
+worklist written to docs/reference/verification_diffs.tsv (1670 entries)
+
+================= per-class summary ======================
+P-code files compared : 156
+  bytecode-identical  : 100 (64.1%)
+  differing           : 50
+  only in original    : 6
+
+differing classes (by size):
+      2392  _class_embed_css_f_fillred_png_97191697_987149254.pcode
+      2401  _class_embed_css_f_fillblue_png__944102544_696470983.pcode
+      2977  en_US$effects_properties.pcode
+      3166  en_US$containers_properties.pcode
+      3495  en_US$layout_properties.pcode
+      5062  en_US$core_properties.pcode
+      5189  Gazillionaire_PlanetBass1Class.pcode
+      5189  Gazillionaire_PlanetFrac1Class.pcode
+      5189  Gazillionaire_PlanetHork1Class.pcode
+      5189  Gazillionaire_PlanetLoro1Class.pcode
+      5189  Gazillionaire_PlanetMira1Class.pcode
+      5189  Gazillionaire_PlanetNosh1Class.pcode
+      5189  Gazillionaire_PlanetOoom1Class.pcode
+      5189  Gazillionaire_PlanetPyke1Class.pcode
+      5189  Gazillionaire_PlanetQueg1Class.pcode
+      5189  Gazillionaire_PlanetStye1Class.pcode
+      5189  Gazillionaire_PlanetTilo1Class.pcode
+      5189  Gazillionaire_PlanetVexx1Class.pcode
+      5189  Gazillionaire_PlanetXeen1Class.pcode
+      5189  Gazillionaire_PlanetZile1Class.pcode
+      5251  _class_embed_css_b_x2_dn_swf_77392359_80761093.pcode
+      5253  Gazillionaire__embed_mxml_TILO1_SWF_1460587624.pcode
+      5253  Gazillionaire__embed_mxml_VEXX1_SWF_1452207462.pcode
+      5255  Gazillionaire__embed_mxml_i_arrow_swf_203146964.pcode
+      5259  Gazillionaire__embed_mxml_b_circle_swf_437016774.pcode
+      5259  Gazillionaire__embed_mxml_i_planet_swf_630432904.pcode
+      5259  Gazillionaire__embed_mxml_i_target_swf_976591674.pcode
+      5259  _class_embed_css_b_x2_mo_swf_335978239_175555539.pcode
+      5259  _class_embed_css_b_x2_up_swf_565934968_340354117.pcode
+      5259  _class_embed_css_b_x2_up_swf_565934968_340354118.pcode
+      5260  _class_embed_css_f_full_swf_392505595_2100659351.pcode
+      5263  _class_embed_css_b_x3_dn_swf_1820202694_745722986.pcode
+      5263  _class_embed_css_b_x3_mo_swf_2078788574_683813778.pcode
+      5268  _class_embed_css_f_empty_swf__416068855_1574736089.pcode
+      5268  _class_embed_css_f_endred_swf_735613634_1127775762.pcode
+      5271  _class_embed_css_b_x3_up_swf__1986221993_1815107817.pcode
+      5273  Gazillionaire__embed_mxml_Frame_help3_swf_987142362.pcode
+      5275  Gazillionaire__embed_mxml_stars_main_swf_1623989498.pcode
+      5276  _class_embed_css_f_endblue_swf_1667013489_1828896639.pcode
+      5281  Gazillionaire__embed_mxml_stars_bg_main_swf_835323288.pcode
+      6518  en_US$collections_properties.pcode
+      7629  en_US$controls_properties.pcode
+     10430  en_US$components_properties.pcode
+     14863  GradientBarSkin.pcode
+     17372  GradientTrackSkin.pcode
+     29410  _Gazillionaire_FlexInit.pcode
+     32191  _Gazillionaire_mx_managers_SystemManager.pcode
+     36814  CustomComboBoxSkin.pcode
+    223641  _Gazillionaire_Styles.pcode
+  1176400977  Gazillionaire.pcode

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Minimal AIR descriptor to launch the rebuilt SWF under adl.
+     (The shipping app also has the FRESteamWorks Steam extension; the game
+     runs without it in offline mode.) -->
+<application xmlns="http://ns.adobe.com/air/application/32.0">
+  <id>Gazillionaire</id>
+  <versionNumber>3.1.0</versionNumber>
+  <filename>Gazillionaire</filename>
+  <initialWindow>
+    <content>Gazillionaire.swf</content>
+    <visible>true</visible>
+    <width>760</width>
+    <height>570</height>
+  </initialWindow>
+  <supportedProfiles>extendedDesktop</supportedProfiles>
+</application>

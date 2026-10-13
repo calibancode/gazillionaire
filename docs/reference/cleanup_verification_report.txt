@@ -1,0 +1,35 @@
+Source fidelity cleanup — 2026-10-12
+
+Build: JAVA_TOOL_OPTIONS=-Djava.awt.headless=true tools/build.sh
+SWF: 1579376 bytes
+Comparison: tools/verify_methods.py .verify_cache/orig/scripts .verify_cache/new/scripts --show 0
+Previous pass: 4681 / 4804 matching, 123 differing
+Resolved this pass: 105; newly differing: 0
+Restored: 6 missing artwork classes (18 additional original methods, all matching)
+Comparator normalization: unchanged
+
+methods compared      : 4822
+  bytecode-identical  : 4804 (99.63%)
+  differing           : 18
+
+classes with differing methods:
+  Gazillionaire.pcode                                        9/4268 differ
+  GradientBarSkin.pcode                                      1/9 differ
+  GradientTrackSkin.pcode                                    1/10 differ
+  en_US$collections_properties.pcode                         1/4 differ
+  en_US$components_properties.pcode                          1/4 differ
+  en_US$containers_properties.pcode                          1/4 differ
+  en_US$controls_properties.pcode                            1/4 differ
+  en_US$core_properties.pcode                                1/4 differ
+  en_US$effects_properties.pcode                             1/4 differ
+  en_US$layout_properties.pcode                              1/4 differ
+
+worklist written to docs/reference/verification_diffs.tsv (18 entries)
+
+Final rebuild consistency: 18 changed game P-code files
+(67 methods) rechecked, with exactly the same 18 differences. All other
+game P-code files unchanged. Artwork library has one top-level frame.
+Final AIR fixtures: PASS (state/localization, helpers, trading, travel order,
+AI facility payments); runtime validator negative cases passed.
+Residual audit: 6 namespace kinds, 4 redundant-jump cases, 1 folded Boolean
+branch, 7 resource member orderings; no unexplained shapes.

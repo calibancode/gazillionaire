@@ -1,0 +1,19 @@
+# class	method_index	category	extra_lines	missing_lines
+Gazillionaire.pcode	2	namespace_kind	2	2
+Gazillionaire.pcode	3	namespace_kind	4	4
+Gazillionaire.pcode	4	namespace_kind	2	2
+Gazillionaire.pcode	87	jump_to_next_instruction	0	2
+Gazillionaire.pcode	91	jump_to_next_instruction	0	1
+Gazillionaire.pcode	263	folded_boolean_branch	2	4
+Gazillionaire.pcode	357	jump_to_next_instruction	0	3
+Gazillionaire.pcode	358	jump_to_next_instruction	0	6
+Gazillionaire.pcode	1305	namespace_kind	62	62
+GradientBarSkin.pcode	2	namespace_kind	2	2
+GradientTrackSkin.pcode	2	namespace_kind	2	2
+en_US$collections_properties.pcode	3	object_member_order	0	0
+en_US$components_properties.pcode	3	object_member_order	0	0
+en_US$containers_properties.pcode	3	object_member_order	0	0
+en_US$controls_properties.pcode	3	object_member_order	0	0
+en_US$core_properties.pcode	3	object_member_order	0	0
+en_US$effects_properties.pcode	3	object_member_order	0	0
+en_US$layout_properties.pcode	3	object_member_order	0	0

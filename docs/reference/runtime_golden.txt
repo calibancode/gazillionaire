@@ -1,0 +1,47 @@
+Real Adobe AIR 32 via Wine — 2026-10-12
+Localization text outputs omitted; complete report retained locally.
+
+Fresh differential results for state/localization, main-class helpers, buy/sell,
+serialization round-trip, travel order and AI facility payments. The trading
+fixture supplies real Flex controls to the loaded original/rebuilt handlers;
+it does not initialize or visually verify a complete application session.
+Travel fixtures force unique destinations and avoid random tie breaking.
+
+================= ORIGINAL =================
+target=[app:/original/Gazillionaire.swf]
+defs GameStrings=true GameType=true PlayerType=true OpponentType=true Gazillionaire=true LoadScreen=true CustomPreloader=true mx.core.UIComponent=true flash.utils.ByteArray=true
+GameStrings keys=3021 charlen=313668 hash=1327368051
+OpponentType.ser len=429 hash=488099251
+PlayerType.ser len=3063 hash=2244757197
+PlayerType.roundtrip hash=2244757197
+GameType.ser len=11366 hash=3228556332
+GameType.roundtrip hash=3228556332
+Mechanics.xml=<x>"a"'b'&
+Mechanics.status hash=3871002317
+Mechanics.commoditySound hash=1930108038
+Trading.buy cash=99184 cargo=34 hash=3294458646
+Trading.sell cash=100000 cargo=0 hash=939968571
+Trading.roundtrip hash=939968571
+Travel.order=7,0,8,1 hash=3222866174
+AI.facilities cash=9450 hash=2626740481
+---8<---
+================= REBUILT  =================
+target=[app:/build/Gazillionaire.swf]
+defs GameStrings=true GameType=true PlayerType=true OpponentType=true Gazillionaire=true LoadScreen=true CustomPreloader=true mx.core.UIComponent=true flash.utils.ByteArray=true
+GameStrings keys=3021 charlen=313668 hash=1327368051
+OpponentType.ser len=429 hash=488099251
+PlayerType.ser len=3063 hash=2244757197
+PlayerType.roundtrip hash=2244757197
+GameType.ser len=11366 hash=3228556332
+GameType.roundtrip hash=3228556332
+Mechanics.xml=<x>"a"'b'&
+Mechanics.status hash=3871002317
+Mechanics.commoditySound hash=1930108038
+Trading.buy cash=99184 cargo=34 hash=3294458646
+Trading.sell cash=100000 cargo=0 hash=939968571
+Trading.roundtrip hash=939968571
+Travel.order=7,0,8,1 hash=3222866174
+AI.facilities cash=9450 hash=2626740481
+---8<---
+
+PASS: state/localization and deterministic gameplay-handler fixtures are identical.

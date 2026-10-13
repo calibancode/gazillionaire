@@ -1,0 +1,11 @@
+/.local-data/
+/sdk/
+/build/
+/app/src/
+/.verify_cache/
+__pycache__/
+*.pyc
+
+/assets/
+/original/
+/src/

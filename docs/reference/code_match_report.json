@@ -1,0 +1,45 @@
+{
+  "metric_version": 1,
+  "description": "Strict index-resolved method matching, weighted by original AVM2 code bytes",
+  "original_sha256": "94e809c2776feea14d740258147344dad40aca07df5ff4fe0f08e08b17c08d27",
+  "rebuilt_sha256": "0a87b9f05b84228f5bb8c5e7f04ab0432ee46359135772db86836f598c4249c0",
+  "scope_sha256": "263e25a2f2425c1c2b311539c36b41eb4d0f588c0cd5c71ebc25493f3196a8a5",
+  "measurer_sha256": "112086a510757b1fd95c88c35393d48711fdcd544b15f123765327437dd0d12c",
+  "jpexs_jar_sha256": "cdf7334730c7fec44203ac332a5e6257a868375ae9259e2617b905a83c9beb67",
+  "application": {
+    "total_methods": 9120,
+    "matched_methods": 8962,
+    "total_code_bytes": 666482,
+    "matched_code_bytes": 533448,
+    "code_matched_percent": 80.0393709057409,
+    "missing_methods": 0,
+    "extra_methods": 0
+  },
+  "core_game": {
+    "total_methods": 8545,
+    "matched_methods": 8442,
+    "total_code_bytes": 638282,
+    "matched_code_bytes": 510932,
+    "code_matched_percent": 80.04800386036266,
+    "missing_methods": 0,
+    "extra_methods": 0
+  },
+  "generated_application": {
+    "total_methods": 511,
+    "matched_methods": 471,
+    "total_code_bytes": 24356,
+    "matched_code_bytes": 21666,
+    "code_matched_percent": 88.9554935128921,
+    "missing_methods": 0,
+    "extra_methods": 0
+  },
+  "resources_and_skins": {
+    "total_methods": 64,
+    "matched_methods": 49,
+    "total_code_bytes": 3844,
+    "matched_code_bytes": 850,
+    "code_matched_percent": 22.11238293444329,
+    "missing_methods": 0,
+    "extra_methods": 0
+  }
+}
