@@ -90,6 +90,11 @@ def clean_codegen(filename: str, text: str) -> str:
         for name in EVENT_ALIASES:
             text = recover_parameter(text, "internal function " + name + "(", "event", "Event")
         text = clean_residuals(text)
+        text = clean_control_flow(text)
+        text, count = re.subn(r"(this\.cornerRadius = 8;\n +this\.backgroundAlpha = )0;",
+                              r"\g<1>0.0;", text)
+        if count != 1:
+            raise ValueError("expected one distance-chart alpha literal")
     elif filename in ("_Gazillionaire_FlexInit.as", "_Gazillionaire_Styles.as"):
         text = recover_parameter(text, "public static function init(", "fbs", "IFlexModuleFactory")
     if filename == "_Gazillionaire_FlexInit.as":
@@ -110,11 +115,93 @@ def clean_codegen(filename: str, text: str) -> str:
         text = text.replace("Boolean(_loc2_.content)", "_loc2_.content")
         for name in ("_allowDomainParameters", "_allowInsecureDomainParameters"):
             text = replace_once(text, "Boolean(this." + name + ")", "this." + name)
+        text = replace_once(text, "         var _loc3_:Array = null;\n", "")
+        text = replace_once(text, "for each(_loc3_ in this._allowDomainParameters)",
+                            "for each(var _loc3_:Array in this._allowDomainParameters)")
     if filename == "CustomComboBoxSkin.as":
         text = replace_once(text, "Number(Math.max(_loc5_ - 1,0))", "Math.max(_loc5_ - 1,0)")
         text = replace_once(text, '               _loc3_ = getStyle("disabledIconColor");',
                             '               _loc3_ = getStyle("disabledIconColor");\n               break;')
+        text = replace_once(text, "         var _loc6_:Object = null;\n", "")
+        text = replace_once(text, "            _loc6_ = cache[_loc5_] = {};",
+                            "            var _loc6_:Object = cache[_loc5_] = {};")
+        # Declare in original register order, but keep declaration and assignment
+        # separate: combining them introduces extra null writes for locals 7/8.
+        for register in range(19, 25):
+            variable = "_loc%d_" % register
+            declaration = "         var %s:Array = null;\n" % variable
+            text = replace_once(text, declaration, "")
+            text = replace_once(text, "               %s = [" % variable,
+                                "               var %s:Array;\n               %s = [" %
+                                (variable, variable))
+    if filename.startswith("en_US$") and filename.endswith("_properties.as"):
+        # Link recovered bundles instead of SDK-generated unordered literals.
+        text, count = re.subn(r"         return (\{.*?\});",
+                              r"         var content:Object = \1;\n         return content;",
+                              text, flags=re.S)
+        if count != 1:
+            raise ValueError("expected one resource literal: " + filename)
+    return clean_members(filename, text)
+
+
+def method_span(text: str, name: str) -> tuple[int, int]:
+    declarations = list(re.finditer(
+        r"^      .*function (?:(?:get|set) )?" + re.escape(name) + r"\(", text, re.M))
+    if len(declarations) != 1:
+        raise ValueError("expected one method: " + name)
+    start = declarations[0].start()
+    return start, text.index("\n      }", start) + len("\n      }")
+
+
+def clean_members(filename: str, text: str) -> str:
+    """Recover lexical writes only where original bytecode uses initproperty."""
+    plan = json.loads(Path(__file__).with_name("member_cleanup.json").read_text())
+    for name, properties in plan.get(filename, {}).items():
+        start, end = method_span(text, name)
+        body = text[start:end]
+        for prop, expected in properties.items():
+            pattern = r"\bthis\." + re.escape(prop) + r"(?=\s*[+\-*/]?=(?!=))"
+            body, count = re.subn(pattern, prop, body)
+            if count != expected:
+                raise ValueError("member cleanup count mismatch: %s/%s/%s" %
+                                 (filename, name, prop))
+        text = text[:start] + body + text[end:]
     return text
+
+
+def clean_control_flow(text: str) -> str:
+    """Restore measured parentheses and else chains lost during decompilation."""
+    start, end = method_span(text, "frm_Special_action")
+    body = text[start:end]
+    old = "if(this.g.p[this.g.player].insurancePriceRange >= 6)"
+    if body.count(old) != 2:
+        raise ValueError("expected two insurance comparisons")
+    body = body.replace(old, "if((this.g.p[this.g.player].insurancePriceRange >= 6))")
+    text = text[:start] + body + text[end:]
+    for name, marker, expected in (
+        ("frm_Travel2_goodEvent", "if(this.frame_globals[1] < 43)", 4),
+        ("frm_Travel2_badEvent", "if(this.frame_globals[1] > -12)", 6),
+    ):
+        start, end = method_span(text, name)
+        body = text[start:end]
+        offset = body.index(marker)
+        tail, count = re.subn(r"\n            }\n            if\(",
+                              "\n            }\n            else if(", body[offset:])
+        if count != expected:
+            raise ValueError("else-chain count mismatch: " + name)
+        text = text[:start] + body[:offset] + tail + text[end:]
+    start, end = method_span(text, "commodity_sound")
+    body = text[start:end]
+    body = replace_once(body, "         if(param1 == 1)", "         else if(param1 == 1)")
+    # The final commodity category belongs to the outer else, not a new if.
+    marker = re.search(r"^         if\(param2 == 0\)", body, re.M)
+    if marker is None:
+        raise ValueError("missing final commodity category")
+    offset = marker.start()
+    tail = body[offset:body.rindex("\n      }")]
+    tail = "\n".join("   " + line for line in tail.split("\n"))
+    body = body[:offset] + "         else\n         {\n" + tail + "\n         }\n      }"
+    return text[:start] + body + text[end:]
 
 
 def clean_residuals(text: str) -> str:

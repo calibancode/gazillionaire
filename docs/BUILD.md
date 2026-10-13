@@ -27,7 +27,9 @@ Edit `tools/prepare_build.py`, `tools/clean_source.py` and their manifests.
 Preparation checks the baseline source hash, repairs decompiler artifacts and
 recovers synthetic artwork embeds without copying executable code. The build
 uses SDK framework classes and places the preloader/application on two frames.
-The original has two ABC blocks; the rebuild has one.
+The original has two ABC blocks; the rebuild has one. The ten recovered
+`en_US$*_properties` classes are force-linked with SDK locale generation disabled,
+preserving original resource literal order and return-local code generation.
 
 Launch through `run.sh`: it assembles the relative asset directories the game
 loads. AIR is preferred for fidelity; Ruffle's AIR support is incomplete.

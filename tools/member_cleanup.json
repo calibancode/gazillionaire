@@ -1,0 +1,611 @@
+{
+  "_Gazillionaire_mx_managers_SystemManager.as": {
+    "info": {
+      "_info": 1
+    },
+    "preloadedRSLs": {
+      "_preloadedRSLs": 1
+    },
+    "allowDomain": {
+      "_allowDomainParameters": 1
+    },
+    "allowInsecureDomain": {
+      "_allowInsecureDomainParameters": 1
+    }
+  },
+  "CustomPreloader.as": {
+    "SWFDownloadComplete": {
+      "_timer": 1
+    }
+  },
+  "Gazillionaire.as": {
+    "moduleFactory": {
+      "__moduleFactoryInitialized": 1
+    },
+    "doInit": {
+      "currentStrings": 1,
+      "server_retries": 1
+    },
+    "process_init_login": {
+      "frame_globals": 1,
+      "password": 2,
+      "username": 2
+    },
+    "load_online_game": {
+      "urlLoader": 1
+    },
+    "process_load_online_game": {
+      "frame_globals": 1,
+      "g": 1,
+      "justLoaded": 3,
+      "userShipNumber": 2
+    },
+    "autosave": {
+      "urlLoader": 1
+    },
+    "process_autosave": {
+      "frame_globals": 1,
+      "server_retries": 1
+    },
+    "new_game": {
+      "g": 1,
+      "server_retries": 1,
+      "userShipNumber": 1
+    },
+    "doQuit": {
+      "urlLoader": 1
+    },
+    "doQuit_gamemake": {
+      "urlLoader": 1
+    },
+    "doQuit_process_gamemake": {
+      "server_retries": 1
+    },
+    "setLanguage": {
+      "currentStrings": 1
+    },
+    "frm_File_SwitchSound": {
+      "sound_enabled": 2
+    },
+    "init_fullscreen": {
+      "fullscreen_enabled": 4
+    },
+    "fullScreenEventHandler": {
+      "fullscreen_enabled": 1
+    },
+    "fullscreen": {
+      "fullscreen_enabled": 2
+    },
+    "frm_NewOrContinue_SwitchSound": {
+      "sound_enabled": 2
+    },
+    "lessSound": {
+      "current_sound": 1,
+      "current_sound_channel": 2,
+      "sound_enabled": 1,
+      "sound_less": 1,
+      "urlLoader": 1
+    },
+    "enableSound": {
+      "current_sound": 1,
+      "current_sound_channel": 2,
+      "sound_enabled": 1,
+      "sound_less": 1,
+      "urlLoader": 1
+    },
+    "disableSound": {
+      "sound_enabled": 1,
+      "sound_less": 1,
+      "urlLoader": 1
+    },
+    "playSound": {
+      "current_sound": 1,
+      "current_sound_channel": 1,
+      "current_sound_file": 1,
+      "current_sound_loops": 1
+    },
+    "playSoundNoLoop": {
+      "current_sound": 1,
+      "current_sound_channel": 1,
+      "current_sound_file": 1,
+      "current_sound_loops": 1
+    },
+    "stopSound": {
+      "current_sound_file": 1
+    },
+    "updateVideoSource": {
+      "videoTimerId": 2
+    },
+    "showHelpNew": {
+      "popup_mouse_X": 1
+    },
+    "showYesNoNew": {
+      "popup_mouse_X": 1
+    },
+    "showAmountNew": {
+      "frm_AmountNew_max": 1,
+      "frm_AmountNew_mid": 1,
+      "frm_AmountNew_min": 1,
+      "popup_mouse_X": 1
+    },
+    "showNotesNew": {
+      "popup_mouse_X": 1
+    },
+    "doYesNo_yes": {
+      "server_retries": 1,
+      "userShipNumber": 1
+    },
+    "doNotes": {
+      "g": 1
+    },
+    "movePopup": {
+      "popup_mouse_X": 1,
+      "popup_mouse_Y": 1
+    },
+    "frm_Init_load": {
+      "g": 1
+    },
+    "frm_Init_do_free_game": {
+      "is_free_game": 1
+    },
+    "frm_Init_do_full_game": {
+      "is_free_game": 1
+    },
+    "frm_NewOrContinue_load": {
+      "fullscreen_enabled": 2,
+      "g": 1,
+      "server_retries": 1,
+      "userShipNumber": 1
+    },
+    "frm_NewOrContinue_check_online_saves": {
+      "urlLoader": 1
+    },
+    "frm_NewOrContinue_process_check_online_saves": {
+      "server_retries": 1
+    },
+    "frm_NewOrContinue_check_online_solo_saves": {
+      "urlLoader": 1
+    },
+    "frm_NewOrContinue_old": {
+      "frame_globals": 1
+    },
+    "frm_NewOrContinue_oldshare": {
+      "frame_globals": 1
+    },
+    "initializeGame": {
+      "g": 1
+    },
+    "frm_Planets_load": {
+      "frame_globals": 1
+    },
+    "frm_Opponents_load": {
+      "frame_globals": 1
+    },
+    "frm_ChooseShip3_online_save_selection": {
+      "urlLoader": 1
+    },
+    "frm_ChooseShip3_process_online_save_selection": {
+      "frame_globals": 2
+    },
+    "frm_PlayerTurn_load": {
+      "justLoaded": 1
+    },
+    "frm_WinGame3_load": {
+      "frame_globals": 1
+    },
+    "frm_PlayerTurn2_enter": {
+      "frame_globals": 1
+    },
+    "frm_Travel4_load": {
+      "frame_globals": 1
+    },
+    "frm_Travel5_load": {
+      "frame_globals": 1
+    },
+    "frm_Stock_load": {
+      "frame_globals": 1
+    },
+    "frm_Money_load": {
+      "frame_globals": 1
+    },
+    "frm_Bank_load": {
+      "frame_globals": 1
+    },
+    "frm_Loan_load": {
+      "frame_globals": 1
+    },
+    "frm_Market_load": {
+      "frame_globals": 1
+    },
+    "frm_Supply_load": {
+      "frame_globals": 1
+    },
+    "frm_Warehouse_load": {
+      "frame_globals": 1
+    },
+    "frm_Passengers_load": {
+      "frame_globals": 1
+    },
+    "frm_Advertising_load": {
+      "frame_globals": 1
+    },
+    "frm_Special_load": {
+      "frame_globals": 2
+    },
+    "frm_History_load": {
+      "frame_globals": 1
+    },
+    "frm_Time_load": {
+      "frame_globals": 1
+    },
+    "frm_File_load": {
+      "frame_globals": 1,
+      "fullscreen_enabled": 2,
+      "server_retries": 1
+    },
+    "frm_File_check_online_saves": {
+      "urlLoader": 1
+    },
+    "frm_File_process_check_online_saves": {
+      "server_retries": 1
+    },
+    "frm_File_check_online_solo_saves": {
+      "urlLoader": 1
+    },
+    "frm_File_online_autosave_then_new": {
+      "urlLoader": 1
+    },
+    "frm_File_process_online_autosave_then_new": {
+      "userShipNumber": 1
+    },
+    "frm_File_savegame": {
+      "frame_globals": 1
+    },
+    "frm_File_init_save": {
+      "urlLoader": 1
+    },
+    "frm_File_online_save": {
+      "urlLoader": 1
+    },
+    "frm_LoadGame_load": {
+      "frame_globals": 2,
+      "server_retries": 1
+    },
+    "frm_LoadGame_check_online_saves": {
+      "urlLoader": 1
+    },
+    "frm_LoadGame_online_resign": {
+      "urlLoader": 1
+    },
+    "frm_LoadGame_loadgame": {
+      "frame_globals": 5,
+      "g": 10,
+      "justLoaded": 5,
+      "server_retries": 1
+    },
+    "frm_LoadGame_online_autosave": {
+      "urlLoader": 1
+    },
+    "frm_LoadGame_process_online_autosave": {
+      "server_retries": 1
+    },
+    "frm_LeavePlanet_load": {
+      "frame_globals": 1
+    },
+    "frm_DistanceChart_load": {
+      "frame_globals": 1
+    },
+    "frm_Bankrupt2_load": {
+      "frame_globals": 1
+    },
+    "frm_Auction_load": {
+      "frame_globals": 1
+    },
+    "frm_Travel1_load": {
+      "anim_timer": 1
+    },
+    "frm_Travel2_load": {
+      "frame_globals": 1
+    },
+    "__popup_shadow_mouseUp": {
+      "popup_mouse_X": 1
+    },
+    "__popup_mouseDown": {
+      "popup_mouse_X": 1,
+      "popup_mouse_Y": 1
+    },
+    "__popup_mouseUp": {
+      "popup_mouse_X": 1
+    }
+  },
+  "GradientTrackSkin.as": {
+    "moduleFactory": {
+      "__moduleFactoryInitialized": 1
+    }
+  },
+  "GradientBarSkin.as": {
+    "moduleFactory": {
+      "__moduleFactoryInitialized": 1
+    }
+  },
+  "GameType.as": {
+    "deserialize": {
+      "activateAdvertising": 1,
+      "activateBank": 1,
+      "activateCrew": 1,
+      "activateDistance": 1,
+      "activateExplore": 1,
+      "activateFacility": 1,
+      "activateFuel": 1,
+      "activateInsurance": 1,
+      "activateLoan": 1,
+      "activatePassengers": 1,
+      "activateStock": 1,
+      "activateSupply": 1,
+      "activateTax": 1,
+      "activateTurn": 1,
+      "activateViewCity": 1,
+      "activateWarehouse": 1,
+      "activateZinn": 1,
+      "advertC": 1,
+      "auction": 1,
+      "auctionCompany": 1,
+      "auctionCompanyLast": 1,
+      "auctionFacilityFee": 1,
+      "auctionFacilityFeeLast": 1,
+      "auctionFacilityPlanet": 1,
+      "auctionFacilityPlanetLast": 1,
+      "auctionFacilityType": 1,
+      "auctionFacilityTypeLast": 1,
+      "auctionHighBid": 1,
+      "auctionHighBidLast": 1,
+      "auctionLast": 1,
+      "auctionNextBid": 1,
+      "auctionNextBidLast": 1,
+      "auctionNextCompany": 1,
+      "auctionNextCompanyLast": 1,
+      "comA": 1,
+      "comP": 1,
+      "comR": 1,
+      "dateYear": 1,
+      "difficulty": 1,
+      "exportTariff": 1,
+      "fuelCost": 1,
+      "fuelPriceRange": 1,
+      "game": 1,
+      "gameEvent": 1,
+      "importTariff": 1,
+      "isMidTurn": 1,
+      "level": 1,
+      "news": 1,
+      "newsData": 1,
+      "newsPlanet": 1,
+      "o": 1,
+      "opNumberOf": 1,
+      "p": 1,
+      "passTax": 1,
+      "planetIndex": 1,
+      "planetX": 1,
+      "planetY": 1,
+      "player": 1,
+      "playerNumberOf": 1,
+      "playerOrder": 1,
+      "playerTurnCounter": 1,
+      "sellingProfit": 1,
+      "stockCrash": 1,
+      "stockFlag": 1,
+      "stockPrice": 1,
+      "stockTrend": 1,
+      "turn": 1,
+      "tutor": 1,
+      "weather": 1,
+      "weatherPlanet": 1,
+      "winner": 1,
+      "winningPoint": 1
+    }
+  },
+  "PlayerType.as": {
+    "deserialize": {
+      "advertFixC": 1,
+      "advertFixP": 1,
+      "advertInvestedC": 1,
+      "advertInvestedP": 1,
+      "advertP": 1,
+      "age": 1,
+      "bankrupt": 1,
+      "cargoCapacity": 1,
+      "cargoTons": 2,
+      "cash": 1,
+      "comPP": 1,
+      "comS": 1,
+      "crew": 1,
+      "crewSalary": 1,
+      "crewWagesOwed": 1,
+      "engine": 1,
+      "eventGood": 1,
+      "eventLastGood": 1,
+      "facility": 1,
+      "facilityFee": 1,
+      "facilityRevenue": 1,
+      "fuel": 1,
+      "fuelCapacity": 1,
+      "history": 1,
+      "insurance": 1,
+      "insuranceCost": 1,
+      "insurancePriceRange": 1,
+      "loan": 1,
+      "loanInterest": 1,
+      "loanMax": 1,
+      "loanRate": 1,
+      "netWorth": 1,
+      "passFlag": 1,
+      "passT": 1,
+      "passTicketPrice": 1,
+      "passengerCapacity": 1,
+      "passengers": 1,
+      "planet": 1,
+      "planetLast": 1,
+      "planetSpecialFlag": 1,
+      "playerName": 1,
+      "playerNameShort": 1,
+      "playerShip": 1,
+      "profitPerPassenger": 1,
+      "quickAdvertising": 1,
+      "quickBank": 1,
+      "quickBuy": 1,
+      "quickCrew": 1,
+      "quickDeposit": 1,
+      "quickExplore": 1,
+      "quickFuel": 1,
+      "quickInsurance": 1,
+      "quickLoan": 1,
+      "quickPassengers": 1,
+      "quickTax": 1,
+      "quickTravel": 1,
+      "quickWarehouse": 1,
+      "random": 1,
+      "sabotageDamage": 1,
+      "savings": 1,
+      "savingsInterest": 1,
+      "savingsRate": 1,
+      "share": 1,
+      "sharePrice": 1,
+      "shipTons": 1,
+      "supplyPlanet": 1,
+      "tariff": 1,
+      "tax": 1,
+      "travelDelayed": 1,
+      "travelTime": 1,
+      "turnTaken": 1,
+      "warehouse": 1,
+      "warehouseGoodsValue": 1,
+      "warehouseSpace": 1,
+      "warehouseT": 1,
+      "zinnInterest": 1,
+      "zinnLoan": 1,
+      "zinnMax": 1,
+      "zinnRate": 1
+    },
+    "init": {
+      "advertFixC": 1,
+      "advertFixP": 1,
+      "advertInvestedC": 1,
+      "advertInvestedP": 1,
+      "advertP": 1,
+      "age": 1,
+      "bankrupt": 1,
+      "cargoCapacity": 1,
+      "cargoTons": 1,
+      "cash": 6,
+      "comPP": 1,
+      "comS": 1,
+      "crew": 1,
+      "crewSalary": 1,
+      "crewWagesOwed": 1,
+      "engine": 1,
+      "eventGood": 6,
+      "eventLastGood": 1,
+      "facility": 1,
+      "facilityFee": 1,
+      "facilityRevenue": 1,
+      "fuel": 1,
+      "fuelCapacity": 1,
+      "history": 1,
+      "insurance": 1,
+      "insuranceCost": 1,
+      "insurancePriceRange": 1,
+      "loan": 1,
+      "loanInterest": 1,
+      "loanMax": 1,
+      "loanRate": 1,
+      "netWorth": 1,
+      "passFlag": 1,
+      "passT": 1,
+      "passTicketPrice": 1,
+      "passengerCapacity": 1,
+      "passengers": 1,
+      "planet": 1,
+      "planetLast": 1,
+      "planetSpecialFlag": 1,
+      "playerName": 1,
+      "playerNameShort": 1,
+      "playerShip": 1,
+      "profitPerPassenger": 1,
+      "quickAdvertising": 1,
+      "quickBank": 1,
+      "quickBuy": 1,
+      "quickCrew": 1,
+      "quickDeposit": 1,
+      "quickExplore": 1,
+      "quickFuel": 1,
+      "quickInsurance": 1,
+      "quickLoan": 1,
+      "quickPassengers": 1,
+      "quickTax": 1,
+      "quickTravel": 1,
+      "quickWarehouse": 1,
+      "random": 1,
+      "sabotageDamage": 1,
+      "savings": 1,
+      "savingsInterest": 1,
+      "savingsRate": 1,
+      "share": 1,
+      "sharePrice": 1,
+      "shipTons": 1,
+      "supplyPlanet": 1,
+      "tariff": 1,
+      "tax": 1,
+      "travelDelayed": 1,
+      "travelTime": 1,
+      "turnTaken": 1,
+      "warehouse": 1,
+      "warehouseGoodsValue": 1,
+      "warehouseSpace": 1,
+      "warehouseT": 1,
+      "zinnInterest": 1,
+      "zinnLoan": 6,
+      "zinnMax": 1,
+      "zinnRate": 1
+    }
+  },
+  "OpponentType.as": {
+    "deserialize": {
+      "cash": 1,
+      "comS": 1,
+      "comTag1": 1,
+      "comTag2": 1,
+      "engine": 1,
+      "facility": 1,
+      "facilityFee": 1,
+      "facilityRevenue": 1,
+      "history": 1,
+      "iQ": 1,
+      "netWorth": 1,
+      "planet": 1,
+      "planetLast": 1,
+      "share": 1,
+      "shipTons": 1,
+      "travelTime": 1,
+      "turnTaken": 1
+    },
+    "init": {
+      "cash": 6,
+      "comS": 1,
+      "comTag1": 1,
+      "comTag2": 1,
+      "engine": 6,
+      "facility": 1,
+      "facilityFee": 1,
+      "facilityRevenue": 1,
+      "history": 1,
+      "iQ": 6,
+      "netWorth": 1,
+      "planet": 1,
+      "planetLast": 1,
+      "share": 1,
+      "shipTons": 1,
+      "travelTime": 1,
+      "turnTaken": 1
+    }
+  }
+}

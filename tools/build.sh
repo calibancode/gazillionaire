@@ -28,10 +28,16 @@ python3 "$ROOT/tools/prepare_build.py"
 # The document class is the generated Flex SystemManager; the application class
 # itself is only referenced by name at runtime, so force-link the entry points
 # plus the classes named in SystemManager.info()'s mixins list.
+# Force-link all ten recovered locale bundles. Clearing -locale below prevents
+# SDK bundle generation from overriding their measured literal member order.
 INCLUDES="Gazillionaire,_Gazillionaire_FlexInit,_Gazillionaire_Styles,\
 LoadScreen_LoadScreenGraphic,CustomPreloader,LoadScreen,\
 mx.styles.StyleManagerImpl,mx.managers.systemClasses.ActiveWindowManager,\
-mx.messaging.config.LoaderConfig"
+mx.messaging.config.LoaderConfig,\
+en_US\$collections_properties,en_US\$components_properties,\
+en_US\$containers_properties,en_US\$controls_properties,en_US\$core_properties,\
+en_US\$effects_properties,en_US\$layout_properties,en_US\$skins_properties,\
+en_US\$styles_properties,en_US\$utils_properties"
 
 echo "==> compiling $OUT"
 mkdir -p "$ROOT/build"
@@ -43,6 +49,7 @@ mkdir -p "$ROOT/build"
 # FrameLabel the original binary has.
 FLEX_HOME="$SDK" AIR_HOME="$SDK" "$SDK/bin/amxmlc" \
     -source-path "$ROOT/app/src" \
+    -locale= \
     "-includes=$INCLUDES" \
     "-frames.frame=Gazillionaire,Gazillionaire" \
     -default-size 760 570 \

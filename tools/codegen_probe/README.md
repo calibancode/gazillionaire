@@ -52,3 +52,27 @@ Probed so far, **all of which still emit `PackageNamespace`**:
 **Open question:** what spelling/context makes ASC emit the plain
 `Namespace` kind for these style-class references? (the `ns_kind` mystery,
 see `docs/CODE_MATCH.md`)
+
+## Source-shape recovery (2026-10-13)
+
+Verified with the current `amxmlc` and the strict linear AVM2 decoder:
+
+* `member = value` emits `initproperty`; `this.member = value` emits
+  `setproperty`. The counted `tools/member_cleanup.json` worklist limits this
+  recovery to measured writes, including compound assignments.
+* `if((a >= 6))` emits `greaterequals; iffalse`, while `if(a >= 6)` emits
+  `ifnge`. Extra parentheses recover the two insurance tests in
+  `frm_Special_action` without changing comparison semantics.
+* Restoring outer `else if`/`else` chains recovers unreachable jumps following
+  returns in `commodity_sound` and the two travel event handlers. Inspect raw
+  canonical dumps, not only JPEXS P-code: its unreachable jump labels can differ
+  from the raw targets.
+* Moving hoisted local declarations to their original lexical positions
+  restores register allocation. For the six skin arrays, use a declaration
+  followed by a separate assignment; an inline initialized declaration causes
+  additional entry-time null writes for registers 7 and 8.
+* Recovered resource sources already retain original key order, but SDK locale
+  generation overrides them unless disabled. Force-link all ten bundles with
+  `-locale=` and restore their typed return local to match the original bodies.
+
+These repairs raise strict matching to 99.27% without modifying the measurer.
