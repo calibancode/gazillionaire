@@ -30,6 +30,12 @@ uses SDK framework classes and places the preloader/application on two frames.
 The original has two ABC blocks; the rebuild has one. The ten recovered
 `en_US$*_properties` classes are force-linked with SDK locale generation disabled,
 preserving original resource literal order and return-local code generation.
+The `-includes` order in `tools/build.sh` also preserves script-initializer
+code generation: `GameType` analyzes before `PlayerType`/`OpponentType` generate,
+while 37 other dependencies generate before their referrers inherit their slots.
+The gradient skins' SDK inheritance/interface prerequisites are explicitly
+included so they generate early enough. Keep this ordering when changing the
+build invocation, and recheck with `python3 tools/measure_code.py`.
 
 Launch through `run.sh`: it assembles the relative asset directories the game
 loads. AIR is preferred for fidelity; Ruffle's AIR support is incomplete.

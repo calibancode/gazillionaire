@@ -1,5 +1,5 @@
 Gazillionaire \
-[![linked](https://img.shields.io/badge/linked-100%25-blue)](docs/CODE_MATCH.md) [![code matched](https://img.shields.io/badge/code_matched-99.27%25-blue)](docs/CODE_MATCH.md)
+[![linked](https://img.shields.io/badge/linked-100%25-blue)](docs/CODE_MATCH.md) [![code matched](https://img.shields.io/badge/code_matched-99.59%25-blue)](docs/CODE_MATCH.md)
 ======
 Reconstructs the Steam AIR/Flex release of Gazillionaire.
 

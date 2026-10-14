@@ -1,15 +1,22 @@
-Source-shape recovery — 2026-10-13
+Source-shape recovery and script-initializer scheduling — 2026-10-13
 
 Build: tools/build.sh (Flex 4.16.1 + AIR 32)
 Strict report and SWF hashes: code_match_report.json
-Strict matching: 661585 / 666482 bytes (99.2652464732731%)
-Strict bodies: 9074 / 9120; missing: 0; extra: 0
+Strict matching: 663756 / 666482 bytes (99.59098670331682%)
+Strict bodies: 9113 / 9120; missing: 0; extra: 0
 Previous strict matching: 533448 bytes / 8962 bodies (80.04%)
-Resolved: 112 bodies / 128137 original code bytes
+Resolved: 151 bodies / 130308 original code bytes
+  Source-shape recovery: 112 bodies / 128137 original code bytes
+  Script-initializer scheduling: 39 bodies / 2171 original code bytes
 Previously matching scoped bodies regressed: 0
 Comparator normalization: unchanged
+All 156 scoped script initializers match. Exactly 39 of the 700 inventoried
+script bodies changed; no method identities were added or removed.
+Two out-of-scope SDK bodies changed: mx.core.UITextField.getStyle and
+spark.primitives.supportClasses.GraphicElement.captureBitmapData.
 
-Normalized per-method comparison (fresh original/rebuilt JPEXS exports):
+Saved normalized per-method comparison (source-shape recovery exports;
+not rerun after the script-initializer scheduling change):
 methods compared      : 4822
   bytecode-identical  : 4815 (99.85%)
   differing           : 7
@@ -23,9 +30,12 @@ Residual audit: 6 namespace-kind cases, 1 unreachable-jump case;
 no unexplained normalized shapes. The raw planet_image_swf jump targets a
 non-instruction byte address beyond its method, not the displayed P-code label.
 
-AIR 32 via Wine: PASS; complete original/rebuilt fixture reports identical.
+Saved AIR 32 via Wine: PASS; complete original/rebuilt fixture reports identical.
+Runtime fixtures were not rerun after the script-initializer scheduling change.
 Python tests: 8 passed (measurement coverage, cleanup and worklist generation).
+Build and tools/build.sh shell syntax checks: PASS after scheduling change.
 Java negative controls: 4 passed (opcode, constant, namespace order, exception).
-Repeat rebuild: all scoped canonical bodies unchanged; SWF hashes differ.
+Saved source-shape repeat rebuild: all scoped canonical bodies unchanged;
+SWF hashes differ. This repeat-build check predates the scheduling change.
 The optional whole-class summary exceeded the 240-second verify.sh budget
 after its per-method report completed. No whole-class success is claimed.
