@@ -5,7 +5,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from clean_source import clean_codegen, clean_control_flow, clean_members, method_span
+from clean_source import (clean_codegen, clean_control_flow, clean_members,
+                          clean_planet_chains, method_span)
 from assignment_manifest import generate
 
 
@@ -72,10 +73,36 @@ class SourceCleanupChecks(unittest.TestCase):
         commodity = method("commodity_sound", "         if(param1 == 0) {}\n"
                            "         if(param1 == 1) {}\n"
                            "         if(param2 == 0) {}\n         return 0;")
-        result = clean_control_flow(special + good + bad + commodity)
+        result = clean_control_flow(special + good + bad + commodity + planet())
         self.assertEqual(result.count("if((this.g.p[this.g.player].insurancePriceRange >= 6))"), 2)
         self.assertEqual(result.count("            else if(test())"), 10)
         self.assertIn("else if(param1 == 1)", result)
         self.assertIn("         else\n         {\n            if(param2 == 0)", result)
+        # planet_image_swf becomes two else-if chains with a shared else branch
+        self.assertEqual(result.count("            else if(param1 == 1)"), 2)
+        self.assertEqual(result.count("            else if(param1 == 12)"), 2)
+        self.assertEqual(result.count("            else\n            {\n"
+                                     "               return new this.PlanetNosh1Class()"), 2)
         with self.assertRaisesRegex(ValueError, "insurance comparisons"):
-            clean_control_flow((special + good + bad + commodity).replace(comparison, "", 1))
+            clean_control_flow((special + good + bad + commodity + planet())
+                               .replace(comparison, "", 1))
+
+    def test_planet_chain_counts_are_checked(self):
+        with self.assertRaisesRegex(ValueError, "planet selector count"):
+            clean_planet_chains(planet(selectors=12))
+        with self.assertRaisesRegex(ValueError, "planet selector statement"):
+            clean_planet_chains(planet(fallback="return this.g.planetIndex;"))
+
+
+def planet(selectors=13, fallback="return new this.PlanetNosh1Class() as MovieClip;"):
+    """The flat, decompiled shape of planet_image_swf."""
+    def chain(indent):
+        branches = "".join(f"{indent}if(param1 == {index})\n{indent}{{\n"
+                          f"{indent}   return new this.PlanetX{index}Class() as MovieClip;\n"
+                          f"{indent}}}\n" for index in range(selectors))
+        return branches + f"{indent}{fallback}\n"
+    return ("      internal function planet_image_swf(param1:int, param2:int) : MovieClip\n"
+            "      {\n"
+            "         if(param2 == 1)\n"
+            "         {\n" + chain("            ") + "         }\n"
+            + chain("         ") + "      }\n")

@@ -201,7 +201,82 @@ def clean_control_flow(text: str) -> str:
     tail = body[offset:body.rindex("\n      }")]
     tail = "\n".join("   " + line for line in tail.split("\n"))
     body = body[:offset] + "         else\n         {\n" + tail + "\n         }\n      }"
-    return text[:start] + body + text[end:]
+    text = text[:start] + body + text[end:]
+    start, end = method_span(text, "planet_image_swf")
+    return text[:start] + clean_planet_chains(text[start:end]) + text[end:]
+
+
+PLANET_FALLBACK = "return new this.PlanetNosh1Class() as MovieClip;"
+
+
+def planet_chain(block: str) -> tuple[list[tuple[str, str]], str]:
+    """Split flat `if(param1 == N) { return ...; }` blocks and their trailing return."""
+    lines = block.splitlines(keepends=True)
+    branches: list[tuple[str, str]] = []
+    fallback: list[str] = []
+    index = 0
+    while index < len(lines):
+        match = re.fullmatch(r"\s*if\((param1 == \d+)\)\n", lines[index])
+        if match and lines[index + 1].strip() == "{":
+            depth, close = 0, index + 1
+            while True:
+                depth += lines[close].count("{") - lines[close].count("}")
+                close += 1
+                if depth == 0:
+                    break
+            branches.append((match.group(1), "".join(lines[index + 2:close - 1])))
+            index = close
+            continue
+        if lines[index].strip():
+            if lines[index].strip() != PLANET_FALLBACK:
+                raise ValueError("unexpected planet selector statement")
+            fallback.append(lines[index])
+        index += 1
+    if not fallback:
+        raise ValueError("missing planet fallback return")
+    return branches, fallback[0]
+
+
+def emit_planet_chain(branches: list[tuple[str, str]], fallback: str, indent: str) -> str:
+    """Re-emit a selector run as `if / else if / ... / else`."""
+    inner = indent + "   "
+    out = []
+    for position, (condition, body) in enumerate(branches):
+        keyword = "if" if position == 0 else "else if"
+        out.append(f"{indent}{keyword}({condition})\n{indent}{{\n{body}{indent}}}\n")
+    out.append(f"{indent}else\n{indent}{{\n{inner}{fallback.strip()}\n{indent}}}\n")
+    return "".join(out)
+
+
+def clean_planet_chains(body: str) -> str:
+    """Rebuild planet_image_swf as two else-if chains, recovering its dead jump."""
+    lines = body.splitlines(keepends=True)
+    opening = next((i for i, line in enumerate(lines)
+                    if line == "         if(param2 == 1)\n"
+                    and lines[i + 1] == "         {\n"), None)
+    if opening is None:
+        raise ValueError("missing planet outer if")
+    depth, closing = 0, opening + 1
+    while True:
+        depth += lines[closing].count("{") - lines[closing].count("}")
+        closing += 1
+        if depth == 0:
+            break
+    first, first_fallback = planet_chain("".join(lines[opening + 2:closing - 1]))
+    tail = "".join(lines[closing:]).rstrip("\n")
+    if tail.endswith("      }"):
+        tail = tail[: -len("      }")]
+    elif tail:
+        raise ValueError("planet selector tail is not the method body")
+    second, second_fallback = planet_chain(tail)
+    if len(first) != 13 or len(second) != 13:
+        raise ValueError("unexpected planet selector count")
+    rebuilt = (lines[0] + lines[1] + lines[opening] + lines[opening + 1]
+               + emit_planet_chain(first, first_fallback, "            ")
+               + "         }\n         else\n         {\n"
+               + emit_planet_chain(second, second_fallback, "            ")
+               + "         }\n      }")
+    return rebuilt
 
 
 def clean_residuals(text: str) -> str:
