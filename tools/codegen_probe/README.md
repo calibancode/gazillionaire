@@ -233,5 +233,6 @@ script bodies change, all 39 now match, and all previously matching scoped bodie
 remain matching. Application matching is **663,756 / 666,482 bytes (99.59%)**,
 with **9,113 / 9,120 bodies** matching; generated application classes are 100%.
 The scratch probe files and instrumentation directory are not retained here.
-The planet selector repair subsequently raised strict matching to **99.66%**,
-leaving six namespace-kind cases. See [the current report](../../docs/CODE_MATCH.md).
+The planet selector repair and the MXML-backend namespace restoration
+subsequently raised strict matching to **100%** (666,482 / 666,482 bytes).
+See [the current report](../../docs/CODE_MATCH.md).

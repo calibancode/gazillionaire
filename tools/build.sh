@@ -5,6 +5,7 @@
 #
 #   1. regenerate app/src from src/decompiled + the extracted assets
 #   2. compile it with the Flex 4.16.1 + AIR 32 toolchain
+#   3. restore the MXML-backend plain-namespace value references
 #
 # Requirements: tools/fetch_sdk.sh has installed $ROOT/sdk, and Java is on PATH.
 #
@@ -14,6 +15,7 @@ export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:-} -Djava.awt.headless=true"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SDK="$ROOT/sdk"
 OUT="$ROOT/build/Gazillionaire.swf"
+FFDEC_JAR="${FFDEC_JAR:-/usr/share/java/ffdec/ffdec.jar}"
 
 [[ -x "$SDK/bin/amxmlc" ]] || {
   echo "error: $SDK/bin/amxmlc not found." >&2
@@ -21,6 +23,7 @@ OUT="$ROOT/build/Gazillionaire.swf"
   exit 1
 }
 command -v java >/dev/null || { echo "error: java not on PATH" >&2; exit 1; }
+[[ -f "$FFDEC_JAR" ]] || { echo "error: $FFDEC_JAR not found" >&2; exit 1; }
 
 echo "==> preparing buildable source tree"
 python3 "$ROOT/tools/prepare_build.py"
@@ -118,5 +121,21 @@ FLEX_HOME="$SDK" AIR_HOME="$SDK" "$SDK/bin/amxmlc" \
     -swf-version=43 \
     -output "$OUT" \
     "$ROOT/app/src/_Gazillionaire_mx_managers_SystemManager.as"
+
+echo "==> restoring MXML-backend namespace encodings"
+# Six methods were synthesized by the original MXML compiler's backend, which
+# emits plain-namespace (kind 8) references to package-level definitions; a
+# plain ActionScript compile resolves the same definitions through the package
+# namespace (kind 22).  The two forms are semantically identical (AVM2 looks
+# namespaces up by their name), but only kind 8 matches the original bytes, so
+# repoint those exact operand sites.  The tool is strict: it fails the build if
+# the compiler output no longer has the expected methods or site counts.
+mkdir -p "$ROOT/build/tools"
+javac -cp "$FFDEC_JAR" -d "$ROOT/build/tools" \
+    "$ROOT/tools/code_match/RestoreMxmlNamespaces.java"
+TMP="$OUT.mxml-ns.tmp"
+java -Djava.awt.headless=true -cp "$ROOT/build/tools:$FFDEC_JAR" \
+    RestoreMxmlNamespaces "$OUT" "$TMP"
+mv "$TMP" "$OUT"
 
 echo "==> built $(stat -c '%s' "$OUT") bytes: $OUT"
