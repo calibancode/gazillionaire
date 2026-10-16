@@ -32,6 +32,26 @@ Runtime loads use paths relative to the application:
 | 1 | Web backend and multiplayer |
 | 2 | Offline paid Steam release; five local save slots |
 
-Web handlers remain compiled into the Steam release but are dormant.
-Steam integration uses `com.amanitadesign.steam.FRESteamWorks` 0.7.0;
-its recovered API lives in `$GAZ_DATA_DIR/src/steam_ane/`.
+The source sets `buildLevel = 2` and `is_free_game = false`. Web handlers
+remain compiled but are not the Steam startup/save path. They use an external
+PHP backend, FlashVars and browser `ExternalInterface`; the recovered client
+does not include that server.
+
+The installation bundles `com.amanitadesign.steam.FRESteamWorks` 0.7.0;
+its extracted ActionScript API lives in `$GAZ_DATA_DIR/src/steam_ane/`.
+The main `Gazillionaire.as` contains no calls to that API. A bundled extension
+does not by itself establish gameplay integration with Steam services.
+
+## Presentation
+
+The main class mixes screen construction, event wiring, domain rules and
+dialogs. `GameType` and its nested player records contain serializable state;
+temporary screen state is held separately in `frame_globals`. There is no
+separate game simulation module. See [reading the UI code](CODE_MAP.md#reading-the-ui-code).
+
+`GameStrings` supplies the English game text; Flex resource bundles supply
+framework text. Speech and effects share one current `SoundChannel`: starting
+a new sound stops the previous one. `playSound` requests 255 repeats;
+`playSoundNoLoop` requests none. Animation SWFs are loaded into image controls.
+Video helpers exist, but their presence does not establish that the Steam
+gameplay path uses every referenced media format.

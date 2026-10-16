@@ -12,6 +12,8 @@ tools/run.sh air
 
 [Setup](docs/BUILD.md) · [Verification](docs/CODE_MATCH.md) · [MIT](LICENSE)
 
+[Game reference](docs/GAME_MECHANICS.md) · [Code map](docs/CODE_MAP.md)
+
 Gazillionaire is copyright LavaMind LLC. This project is not affiliated with
 or endorsed by LavaMind LLC. MIT covers original project contributions,
 excluding extracted game and third-party material.

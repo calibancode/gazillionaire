@@ -37,14 +37,11 @@ The gradient skins' SDK inheritance/interface prerequisites are explicitly
 included so they generate early enough. Keep this ordering when changing the
 build invocation, and recheck with `python3 tools/measure_code.py`.
 
-After `amxmlc` finishes, `tools/build.sh` runs
-`tools/code_match/RestoreMxmlNamespaces.java` (JDK + the JPEXS jar, default
-`/usr/share/java/ffdec/ffdec.jar`, override with `FFDEC_JAR=...`). The six
-methods the original MXML compiler synthesized for itself reference
-package-level definitions through plain namespaces (kind 8), while a plain
-ActionScript compile emits package namespaces (kind 22) for the same
-definitions. The step repoints exactly those operand sites and fails the build
-if the compiler output no longer contains the expected methods or site counts.
+After `amxmlc`, the build runs `RestoreMxmlNamespaces.java` to restore six
+MXML-generated methods' namespace encodings. It checks exact method/site
+counts; see [code matching](CODE_MATCH.md#reconstruction-details).
+The JPEXS jar defaults to `/usr/share/java/ffdec/ffdec.jar`;
+override it with `FFDEC_JAR=/path/to/ffdec.jar tools/build.sh`.
 
 Launch through `run.sh`: it assembles the relative asset directories the game
 loads. AIR is preferred for fidelity; Ruffle's AIR support is incomplete.
